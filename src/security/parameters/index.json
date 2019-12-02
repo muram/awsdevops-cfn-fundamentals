@@ -1,0 +1,24 @@
+{
+  "ParamAuthorName": {
+    "Type": "String",
+    "Description": "Owner of the CFN Template"
+  },
+  "ParamNetworkStackName": {
+    "Type": "String",
+    "Description": "Name of an active CloudFormation stack that contains the networking / VPC resources",
+    "MinLength": 1,
+    "MaxLength": 255,
+    "AllowedPattern": "^[a-zA-Z][-a-zA-Z0-9]*$"
+  },
+  "ParamAllowSSHFromRange": {
+    "Type": "String",
+    "Description": "IP CidrBlock to allow SSH access. i.e. 100.100.100.100/32",
+    "Default": "0.0.0.0/0"
+  },
+  "ParamAllowSSHAccess": {
+    "Type": "String",
+    "AllowedValues": ["true", "false"],
+    "Default": "true",
+    "ConstraintDescription": "Input true or false for SSH access"
+  }
+}

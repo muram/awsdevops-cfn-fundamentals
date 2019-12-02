@@ -1,0 +1,11 @@
+{
+  "name": "awsdevops-cfn",
+  "version": "0.1.0",
+  "description": "A CloudFormation project - generated with CloudFoundation",
+  "cloudfoundation": true,
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}

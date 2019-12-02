@@ -1,0 +1,48 @@
+{
+  "SecurityGroup": {
+    "Type": "AWS::EC2::SecurityGroup",
+    "Properties": {
+      "GroupName": {
+        "Fn::Sub": "${AWS::StackName}-instance-sg"
+      },
+      "GroupDescription": "Security group for SSH and HTTP",
+      "VpcId": {
+        "Fn::ImportValue": {
+          "Fn::Sub": "${ParamNetworkStackName}-VPCId"
+        }
+      },
+      "SecurityGroupIngress": [
+        {
+          "IpProtocol": "tcp",
+          "FromPort": "80",
+          "ToPort": "80",
+          "CidrIp": "0.0.0.0/0"
+        },
+        {
+          "Fn::If": [
+            "AllowSSHAccess",
+            {
+              "IpProtocol": "tcp",
+              "FromPort": "22",
+              "ToPort": "22",
+              "CidrIp": {
+                "Ref": "ParamAllowSSHFromRange"
+              }
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": {
+            "Fn::Sub": "${AWS::StackName}-instance-sg"
+          }
+        }
+      ]
+    }
+  }
+}
